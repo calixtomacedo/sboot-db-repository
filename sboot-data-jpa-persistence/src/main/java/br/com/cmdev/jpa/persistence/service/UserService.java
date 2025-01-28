@@ -8,6 +8,7 @@ import br.com.cmdev.jpa.persistence.mapper.UserMapper;
 import br.com.cmdev.jpa.persistence.repository.UserRepository;
 import br.com.cmdev.jpa.persistence.utils.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -23,8 +24,15 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
+    private final BCryptPasswordEncoder passwordEncoder;
+
+    public UserService(BCryptPasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
     public UserResponse saveUser(UserRequest request) {
         User user = mapper.userRequestToUser(request);
+        user.setPassword(passwordEncoder.encode(request.password()));
         User newUser = repository.save(user);
         UserResponse response = mapper.userToUserResponse(newUser);
         return response;
@@ -49,7 +57,7 @@ public class UserService {
             user.get().setId(id);
             user.get().setName(request.name());
             user.get().setEmail(request.email());
-            user.get().setPassword(request.password());
+            user.get().setPassword(passwordEncoder.encode(request.password()));
             user.get().setRole(UserRole.valueOf(request.role()));
             user.get().setActive(request.isActive());
             user.get().setChangeDate(LocalDateTime.now());
