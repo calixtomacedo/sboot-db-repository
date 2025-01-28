@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: sboot-data-jpa-persistence
+  main:
+    banner-mode: CONSOLE
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
+  beaninfo:
+    ignore: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_DATASOURCE_URL}
+    username: ${MYSQL_DATASOURCE_USERNAME}
+    password: ${MYSQL_DATASOURCE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+server:
+  port: 8080
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: true
+  error:
+    whitelabel:
+      enabled: false
+
+management:
+  server:
+    port: 9090
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: info, health, metrics, prometheus
