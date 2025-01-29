@@ -1,14 +1,13 @@
-package br.com.cmdev.jpa.persistence.service;
+package br.com.cmdev.data.jpa.service;
 
 
-import br.com.cmdev.jpa.persistence.dto.UserRequest;
-import br.com.cmdev.jpa.persistence.dto.UserResponse;
-import br.com.cmdev.jpa.persistence.entity.User;
-import br.com.cmdev.jpa.persistence.mapper.UserMapper;
-import br.com.cmdev.jpa.persistence.repository.UserRepository;
-import br.com.cmdev.jpa.persistence.utils.UserRole;
+import br.com.cmdev.data.jpa.dto.UserRequest;
+import br.com.cmdev.data.jpa.dto.UserResponse;
+import br.com.cmdev.data.jpa.entity.User;
+import br.com.cmdev.data.jpa.mapper.UserMapper;
+import br.com.cmdev.data.jpa.repository.UserRepository;
+import br.com.cmdev.data.jpa.utils.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

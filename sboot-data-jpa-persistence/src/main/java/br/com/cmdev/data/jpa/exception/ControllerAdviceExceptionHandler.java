@@ -1,4 +1,4 @@
-package br.com.cmdev.jpa.persistence.exception;
+package br.com.cmdev.data.jpa.exception;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;

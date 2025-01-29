@@ -1,4 +1,4 @@
-package br.com.cmdev.jpa.persistence.config;
+package br.com.cmdev.data.jpa.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

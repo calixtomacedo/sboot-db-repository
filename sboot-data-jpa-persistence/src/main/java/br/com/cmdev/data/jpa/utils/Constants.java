@@ -1,4 +1,4 @@
-package br.com.cmdev.jpa.persistence.utils;
+package br.com.cmdev.data.jpa.utils;
 
 public class Constants {
     public static final String DATETIME_FORMAT = "dd/MM/yyyy HH:mm:ss";

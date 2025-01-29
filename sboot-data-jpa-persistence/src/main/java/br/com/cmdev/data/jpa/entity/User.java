@@ -1,7 +1,7 @@
-package br.com.cmdev.jpa.persistence.entity;
+package br.com.cmdev.data.jpa.entity;
 
-import br.com.cmdev.jpa.persistence.utils.DataBaseTables;
-import br.com.cmdev.jpa.persistence.utils.UserRole;
+import br.com.cmdev.data.jpa.utils.DataBaseTables;
+import br.com.cmdev.data.jpa.utils.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 

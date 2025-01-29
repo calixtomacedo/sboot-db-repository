@@ -1,4 +1,4 @@
-package br.com.cmdev.jpa.persistence.dto;
+package br.com.cmdev.data.jpa.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

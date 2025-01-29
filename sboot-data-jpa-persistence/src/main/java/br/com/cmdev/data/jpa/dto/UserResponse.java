@@ -1,4 +1,4 @@
-package br.com.cmdev.jpa.persistence.dto;
+package br.com.cmdev.data.jpa.dto;
 
 public record UserResponse(
         Long id,

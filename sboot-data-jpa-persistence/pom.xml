@@ -12,7 +12,7 @@
 	<artifactId>sboot-data-jpa-persistence</artifactId>
 	<version>0.0.1</version>
 	<name>sboot-data-jpa-persistence</name>
-	<description>Project Spring Boot for studies with database persistence.</description>
+	<description>Project Spring Boot for studies with database persistence data jpa.</description>
 	<url/>
 	<licenses>
 		<license/>

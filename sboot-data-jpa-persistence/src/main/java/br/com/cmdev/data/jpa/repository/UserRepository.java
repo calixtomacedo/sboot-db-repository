@@ -1,6 +1,6 @@
-package br.com.cmdev.jpa.persistence.repository;
+package br.com.cmdev.data.jpa.repository;
 
-import br.com.cmdev.jpa.persistence.entity.User;
+import br.com.cmdev.data.jpa.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

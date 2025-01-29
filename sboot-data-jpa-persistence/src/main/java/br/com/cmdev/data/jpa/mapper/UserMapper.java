@@ -1,9 +1,9 @@
-package br.com.cmdev.jpa.persistence.mapper;
+package br.com.cmdev.data.jpa.mapper;
 
-import br.com.cmdev.jpa.persistence.dto.UserRequest;
-import br.com.cmdev.jpa.persistence.dto.UserResponse;
-import br.com.cmdev.jpa.persistence.entity.User;
-import br.com.cmdev.jpa.persistence.utils.Constants;
+import br.com.cmdev.data.jpa.dto.UserRequest;
+import br.com.cmdev.data.jpa.dto.UserResponse;
+import br.com.cmdev.data.jpa.entity.User;
+import br.com.cmdev.data.jpa.utils.Constants;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

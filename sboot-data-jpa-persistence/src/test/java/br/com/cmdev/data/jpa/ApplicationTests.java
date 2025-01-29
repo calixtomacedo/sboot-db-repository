@@ -1,4 +1,4 @@
-package br.com.cmdev.jpa.persistence;
+package br.com.cmdev.data.jpa;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
