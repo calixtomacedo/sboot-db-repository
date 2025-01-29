@@ -1,6 +1,6 @@
 spring:
   application:
-    name: sboot-data-jdbc-persistence
+    name: sboot-jdbc-api-persistence
 
   main:
     banner-mode: CONSOLE

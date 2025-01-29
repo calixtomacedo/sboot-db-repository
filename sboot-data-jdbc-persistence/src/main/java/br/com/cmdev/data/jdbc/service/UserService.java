@@ -18,9 +18,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserMapper mapper;
-
     private final UserRepository repository;
-
     private final BCryptPasswordEncoder passwordEncoder;
 
     public UserService(UserMapper mapper, UserRepository repository, BCryptPasswordEncoder passwordEncoder) {
