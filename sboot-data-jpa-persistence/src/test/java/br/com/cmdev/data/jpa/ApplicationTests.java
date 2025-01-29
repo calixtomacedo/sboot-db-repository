@@ -6,11 +6,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 class ApplicationTests {
 
 /*
-	@Test
-	void contextLoads() {
-	}
-*/
-/*
     @Test
     void applicationMainTest() {
         try (MockedStatic<SpringApplication> utilities = Mockito.mockStatic(SpringApplication.class)) {
