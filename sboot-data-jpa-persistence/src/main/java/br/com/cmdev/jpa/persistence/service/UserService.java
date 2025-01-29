@@ -8,6 +8,8 @@ import br.com.cmdev.jpa.persistence.mapper.UserMapper;
 import br.com.cmdev.jpa.persistence.repository.UserRepository;
 import br.com.cmdev.jpa.persistence.utils.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +40,8 @@ public class UserService {
         return response;
     }
 
-    public List<UserResponse> getAllUsers() {
-        Iterable<User> users = repository.findAll();
+    public List<UserResponse> getAllUsers(Pageable pageable) {
+        Iterable<User> users = repository.findAll(pageable);
         List<UserResponse> response = mapper.userListToUserResponseList(users);
         return response;
     }

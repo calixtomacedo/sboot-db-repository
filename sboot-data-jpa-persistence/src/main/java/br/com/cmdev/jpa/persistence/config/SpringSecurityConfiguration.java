@@ -14,9 +14,6 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SpringSecurityConfiguration {
 
-    //@Autowired
-    //private UserDetailsService userDetailsService;
-
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.cors(AbstractHttpConfigurer::disable)
@@ -26,7 +23,6 @@ public class SpringSecurityConfiguration {
                         .requestMatchers("/user/*").permitAll()
                         .requestMatchers("/login").permitAll()
                         .anyRequest().authenticated()
-
                 )
                 .httpBasic(Customizer.withDefaults())
                 .build();
@@ -36,14 +32,4 @@ public class SpringSecurityConfiguration {
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-    /*
-    @Bean
-    public AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(userDetailsService);
-        authenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
-        return authenticationProvider;
-    }
-    */
 }

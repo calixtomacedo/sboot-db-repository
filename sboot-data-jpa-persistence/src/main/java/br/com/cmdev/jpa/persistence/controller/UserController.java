@@ -5,6 +5,9 @@ import br.com.cmdev.jpa.persistence.dto.UserResponse;
 import br.com.cmdev.jpa.persistence.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +29,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getAllUsers() {
-        List<UserResponse> allUsers = service.getAllUsers();
+    public ResponseEntity<List<UserResponse>> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int items) {
+        Pageable pageable = PageRequest.of(page, items, Sort.by("name"));
+        List<UserResponse> allUsers = service.getAllUsers(pageable);
         if(Objects.nonNull(allUsers) && !allUsers.isEmpty()) {
             return ResponseEntity.ok(allUsers);
         }
@@ -51,8 +55,9 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<List<UserResponse>> deteleUser(@PathVariable("id") Long id) {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("name"));
         service.deleteUser(id);
-        List<UserResponse> allUsers = service.getAllUsers();
+        List<UserResponse> allUsers = service.getAllUsers(pageable);
         return allUsers.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allUsers);
     }
 
