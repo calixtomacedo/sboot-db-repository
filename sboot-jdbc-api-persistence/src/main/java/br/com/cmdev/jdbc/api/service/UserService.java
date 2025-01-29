@@ -5,6 +5,7 @@ import br.com.cmdev.jdbc.api.dto.UserResponse;
 import br.com.cmdev.jdbc.api.entity.User;
 import br.com.cmdev.jdbc.api.mapper.UserMapper;
 import br.com.cmdev.jdbc.api.repository.UserRepository;
+import br.com.cmdev.jdbc.api.utils.PageAndSort;
 import br.com.cmdev.jdbc.api.utils.UserRole;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -32,8 +33,8 @@ public class UserService {
         return repository.findByNameAndEmail(user).orElse(null);
     }
 
-    public List<UserResponse> getAllUsers() {
-        List<UserResponse> usersResponse = repository.findAll();
+    public List<UserResponse> getAllUsers(PageAndSort pageAndSort) {
+        List<UserResponse> usersResponse = repository.findAll(pageAndSort);
         return usersResponse;
     }
 

@@ -6,7 +6,7 @@ public class Constants {
     public static final String DATETIME_MILLISECONDS_FORMAT = "dd/MM/yyyy HH:mm:ss:SSS";
 
     public static final String INSERT_USERS = "INSERT INTO users(name, email, password, role, is_active, creation_date) VALUES(:name, :email, :password, :role, :is_active, :creation_date)";
-    public static final String SQL_GET_ALL_USERS = "SELECT * FROM users";
+    public static final String SQL_GET_ALL_USERS = "SELECT * FROM users ORDER BY name LIMIT :page, :size";
     public static final String SQL_GET_USERS_BY_ID = "SELECT * FROM users WHERE id = :id";
     public static final String SQL_UPDATE_USERS = "UPDATE users SET name = :name, email = :email, password = :password, role = :role, is_active = :is_active, change_date = :change_date WHERE id = :id";
     public static final String SQL_DELETE_USERS = "DELETE FROM users WHERE id = :id";
@@ -21,4 +21,6 @@ public class Constants {
     public static final String TABLE_USERS_ISACTIVE = "is_active";
     public static final String TABLE_USERS_CREATIONDATE = "creation_date";
     public static final String TABLE_USERS_CHANGEDATE = "change_date";
+    public static final String PAGE = "page";
+    public static final String SIZE = "size";
 }

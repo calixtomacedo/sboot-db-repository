@@ -3,6 +3,7 @@ package br.com.cmdev.jdbc.api.controller;
 import br.com.cmdev.jdbc.api.dto.UserRequest;
 import br.com.cmdev.jdbc.api.dto.UserResponse;
 import br.com.cmdev.jdbc.api.service.UserService;
+import br.com.cmdev.jdbc.api.utils.PageAndSort;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +30,8 @@ public class UserController {
 
     @GetMapping
     public ResponseEntity<List<UserResponse>> getAllUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size) {
-        //Pageable pageable = PageRequest.of(page, size, Sort.by("name"));
-        //List<UserResponse> allUsers = service.getAllUsers(pageable);
-        List<UserResponse> allUsers = service.getAllUsers();
+        PageAndSort pageAndSort = new PageAndSort(page, size);
+        List<UserResponse> allUsers = service.getAllUsers(pageAndSort);
         if(Objects.nonNull(allUsers) && !allUsers.isEmpty()) {
             return ResponseEntity.ok(allUsers);
         }
@@ -56,9 +56,8 @@ public class UserController {
     @DeleteMapping("/{id}")
     public ResponseEntity<List<UserResponse>> deteleUser(@PathVariable("id") Long id) {
         service.deleteUser(id);
-        //Pageable pageable = PageRequest.of(0, 20, Sort.by("name"));
-        //List<UserResponse> allUsers = service.getAllUsers(pageable);
-        List<UserResponse> allUsers = service.getAllUsers();
+        PageAndSort pageAndSort = new PageAndSort(0, 20);
+        List<UserResponse> allUsers = service.getAllUsers(pageAndSort);
         return allUsers.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(allUsers);
     }
 }

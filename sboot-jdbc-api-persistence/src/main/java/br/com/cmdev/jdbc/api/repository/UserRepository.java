@@ -3,6 +3,7 @@ package br.com.cmdev.jdbc.api.repository;
 import br.com.cmdev.jdbc.api.dto.UserResponse;
 import br.com.cmdev.jdbc.api.entity.User;
 import br.com.cmdev.jdbc.api.utils.Constants;
+import br.com.cmdev.jdbc.api.utils.PageAndSort;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
 
@@ -37,8 +38,11 @@ public class UserRepository {
                 .query(UserResponse.class).single());
     }
 
-    public List<UserResponse> findAll(){
-        return jdbcClient.sql(Constants.SQL_GET_ALL_USERS).query(UserResponse.class).list();
+    public List<UserResponse> findAll(PageAndSort pageAndSort){
+        return jdbcClient.sql(Constants.SQL_GET_ALL_USERS)
+                .param(Constants.PAGE, pageAndSort.page() * pageAndSort.size())
+                .param(Constants.SIZE, pageAndSort.size())
+                .query(UserResponse.class).list();
     }
 
     public Optional<UserResponse> findById(Long id) {
@@ -63,4 +67,5 @@ public class UserRepository {
     public void delete(Long id) {
         jdbcClient.sql(Constants.SQL_DELETE_USERS).param(Constants.TABLE_USERS_ID, id).update();
     }
+
 }
