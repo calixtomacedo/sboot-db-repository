@@ -15,14 +15,13 @@ import java.util.List;
 public interface UserMapper {
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "active", expression = "java(Boolean.TRUE)")
+    @Mapping(target = "isActive", expression = "java(Boolean.TRUE)")
     @Mapping(target = "creationDate", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "changeDate", ignore = true)
     User userRequestToUser(UserRequest request);
 
     @Mapping(target = "creationDate", source = "creationDate", dateFormat = Constants.DATETIME_MILLISECONDS_FORMAT)
     @Mapping(target = "changeDate", source = "changeDate", dateFormat = Constants.DATETIME_MILLISECONDS_FORMAT)
-    @Mapping(target = "isActive", source = "active")
     UserResponse userToUserResponse(User newUser);
 
     List<UserResponse> userListToUserResponseList(Iterable<User> users);
