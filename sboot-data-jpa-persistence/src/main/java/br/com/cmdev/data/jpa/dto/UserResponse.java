@@ -1,7 +1,7 @@
 package br.com.cmdev.data.jpa.dto;
 
 public record UserResponse(
-        Long id,
+        Long userId,
         String name,
         String email,
         String role,

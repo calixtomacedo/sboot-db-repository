@@ -52,10 +52,10 @@ public class UserService {
         return response;
     }
 
-    public void updateUser(Long id, UserRequest request) {
-        var user = repository.findById(id);
+    public void updateUser(Long userId, UserRequest request) {
+        var user = repository.findById(userId);
         if(user.isPresent()) {
-            user.get().setId(id);
+            user.get().setUserId(userId);
             user.get().setName(request.name());
             user.get().setEmail(request.email());
             user.get().setPassword(passwordEncoder.encode(request.password()));

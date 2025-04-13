@@ -15,20 +15,37 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = DataBaseTables.TABLE_USERS)
+@Table(name = DataBaseTables.TABLE_USERS, schema = "cmdev-db")
 public class User implements Serializable {
 
     @Id
+    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long userId;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "role")
     private UserRole role;
+
+    @Column(name = "active")
     private Boolean active;
+
+    @Column(name = "creationDate")
     private LocalDateTime creationDate;
+
+    @Column(name = "changeDate")
     private LocalDateTime changeDate;
+
+    @OneToOne(mappedBy = "user")
+    private Address address;
 
 }
