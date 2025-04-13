@@ -33,7 +33,9 @@ server:
         secure: true
   error:
     whitelabel:
-      enabled: false
+      enabled: true
+    include-message: always
+    include-stacktrace: never
 
 management:
   server:

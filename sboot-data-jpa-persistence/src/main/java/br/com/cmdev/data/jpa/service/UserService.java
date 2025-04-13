@@ -3,6 +3,7 @@ package br.com.cmdev.data.jpa.service;
 
 import br.com.cmdev.data.jpa.dto.UserRequest;
 import br.com.cmdev.data.jpa.dto.UserResponse;
+import br.com.cmdev.data.jpa.entity.Address;
 import br.com.cmdev.data.jpa.entity.User;
 import br.com.cmdev.data.jpa.mapper.UserMapper;
 import br.com.cmdev.data.jpa.repository.UserRepository;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -31,9 +33,14 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Transactional
     public UserResponse saveUser(UserRequest request) {
+        Address address = mapper.addressRequestToAddress(request.address());
         User user = mapper.userRequestToUser(request);
+
         user.setPassword(passwordEncoder.encode(request.password()));
+        address.setUser(user);
+        user.setAddress(address);
         User newUser = repository.save(user);
         UserResponse response = mapper.userToUserResponse(newUser);
         return response;
@@ -52,6 +59,7 @@ public class UserService {
         return response;
     }
 
+    @Transactional
     public void updateUser(Long userId, UserRequest request) {
         var user = repository.findById(userId);
         if(user.isPresent()) {
@@ -66,6 +74,7 @@ public class UserService {
         }
     }
 
+    @Transactional
     public void deleteUser(Long id) {
         Optional<User> user = repository.findById(id);
         if(user.isPresent()) {

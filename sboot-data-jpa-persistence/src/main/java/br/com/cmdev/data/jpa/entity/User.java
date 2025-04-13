@@ -2,9 +2,11 @@ package br.com.cmdev.data.jpa.entity;
 
 import br.com.cmdev.data.jpa.utils.DataBaseTables;
 import br.com.cmdev.data.jpa.utils.UserRole;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -15,8 +17,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = DataBaseTables.TABLE_USERS, schema = "cmdev-db")
+@Table(name = DataBaseTables.TABLE_USERS, schema = "cmdev_tests")
 public class User implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -4289711237009392040L;
 
     @Id
     @Column(name = "user_id")
@@ -45,7 +50,7 @@ public class User implements Serializable {
     @Column(name = "changeDate")
     private LocalDateTime changeDate;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
 
 }

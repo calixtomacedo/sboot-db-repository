@@ -7,6 +7,7 @@ public record UserResponse(
         String role,
         Boolean isActive,
         String creationDate,
-        String changeDate
+        String changeDate,
+        AddressResponse address
 ) {
 }

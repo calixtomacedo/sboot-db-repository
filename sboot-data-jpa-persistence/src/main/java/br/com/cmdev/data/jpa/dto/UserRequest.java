@@ -1,5 +1,6 @@
 package br.com.cmdev.data.jpa.dto;
 
+import br.com.cmdev.data.jpa.entity.Address;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,6 +20,9 @@ public record UserRequest(
         String role,
 
         @NotNull
-        Boolean isActive
+        Boolean isActive,
+
+        @NotNull
+        AddressRequest address
 ) {
 }
