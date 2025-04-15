@@ -2,7 +2,6 @@ package br.com.cmdev.data.jpa.entity;
 
 import br.com.cmdev.data.jpa.utils.DataBaseTables;
 import br.com.cmdev.data.jpa.utils.UserRole;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -53,4 +52,14 @@ public class User implements Serializable {
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
 
+    @PrePersist
+    private void prePersist() {
+        this.active = Boolean.TRUE;
+        this.creationDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void preUpdate() {
+        this.changeDate = LocalDateTime.now();
+    }
 }

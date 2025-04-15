@@ -69,7 +69,6 @@ public class UserService {
             user.get().setPassword(passwordEncoder.encode(request.password()));
             user.get().setRole(UserRole.valueOf(request.role()));
             user.get().setActive(request.isActive());
-            user.get().setChangeDate(LocalDateTime.now());
             repository.save(user.get());
         }
     }

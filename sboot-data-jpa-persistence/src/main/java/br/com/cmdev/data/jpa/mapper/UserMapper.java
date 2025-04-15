@@ -17,9 +17,9 @@ import java.util.List;
 public interface UserMapper {
 
     @Mapping(target = "userId", ignore = true)
-    @Mapping(target = "active", expression = "java(Boolean.TRUE)")
-    @Mapping(target = "creationDate", expression = "java(java.time.LocalDateTime.now())")
+    @Mapping(target = "creationDate", ignore = true)
     @Mapping(target = "changeDate", ignore = true)
+    @Mapping(target = "active", source = "isActive")
     User userRequestToUser(UserRequest request);
 
     @Mapping(target = "addressId", ignore = true)
