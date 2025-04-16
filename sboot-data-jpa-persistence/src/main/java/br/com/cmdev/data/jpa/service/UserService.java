@@ -68,6 +68,15 @@ public class UserService {
             user.get().setPassword(passwordEncoder.encode(request.password()));
             user.get().setRole(UserRole.valueOf(request.role()));
             user.get().setActive(request.isActive());
+            var address = Address.builder()
+                    .addressId(user.get().getAddress().getAddressId())
+                    .streat(request.address().streat())
+                    .number(request.address().number())
+                    .neighborhood(request.address().neighborhood())
+                    .city(request.address().city())
+                    .state(request.address().state()).build();
+            user.get().setAddress(address);
+            user.get().getAddress().setUser(user.get());
             repository.save(user.get());
         }
     }
