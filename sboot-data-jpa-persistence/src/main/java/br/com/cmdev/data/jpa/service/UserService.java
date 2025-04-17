@@ -58,6 +58,11 @@ public class UserService {
         return response;
     }
 
+    public List<UserResponse> getUsersByRole(UserRole role) {
+        List<User> users = repository.findAllByRole(role);
+        return mapper.userListToUserResponseList(users);
+    }
+
     @Transactional
     public void updateUser(Long userId, UserRequest request) {
         var user = repository.findById(userId);

@@ -3,6 +3,7 @@ package br.com.cmdev.data.jpa.controller;
 import br.com.cmdev.data.jpa.dto.UserRequest;
 import br.com.cmdev.data.jpa.dto.UserResponse;
 import br.com.cmdev.data.jpa.service.UserService;
+import br.com.cmdev.data.jpa.utils.UserRole;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -45,6 +46,12 @@ public class UserController {
             return ResponseEntity.ok(response);
         }
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/role/{role}")
+    public ResponseEntity<List<UserResponse>> getUsersByRole(@PathVariable("role") UserRole role) {
+        List<UserResponse> usersByRole = service.getUsersByRole(role);
+        return usersByRole.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(usersByRole);
     }
 
     @PutMapping("/{id}")
