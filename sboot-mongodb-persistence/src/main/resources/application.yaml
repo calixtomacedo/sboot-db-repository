@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: sboot-mongodb-persistence
+
+  data:
+    mongodb:
+      uri: mongodb://${spring.data.mongodb.username}:${spring.data.mongodb.password}@192.168.15.100:27017/${spring.data.mongodb.database}?authSource=admin&retryWrites=true&w=majority
+      database: employeedb
+      username: ${MONGODB_USERNAME}
+      password: ${MONGODB_PASSWORD}
